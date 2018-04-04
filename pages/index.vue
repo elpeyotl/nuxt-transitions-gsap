@@ -6,8 +6,16 @@
           nuxt-trans-demo
         </h1>
       <h2 class="subtitle">
-        Nuxt.js project
+        Countries
       </h2>
+      <ul>
+        <li v-for="(country,index) in countries" :key="index">
+          {{ $t(country.Title) }} ||
+          <span v-if="disease" style="color: red" v-for="(disease,index) in country.collectionlink" :key="index">
+            {{disease.display}}
+           </span>
+          </li>
+      </ul>
       <div class="links">
         <nuxt-link to="/about">
           <button class="button--green">
@@ -22,8 +30,17 @@
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import { TweenLite} from 'gsap'
+import axios from 'axios'
 
 export default {
+   asyncData({ req, params }) {
+    // We can return a Promise instead of calling the callback
+    return axios.get('http://localhost/demos/nuxt-trans-demo/cms/api/collections/get/Countries/posts?token=5d748a0c3d5cccb912e82a29bb7169')
+      .then((res) => {
+        console.log(res.data)
+        return { countries: res.data.entries }
+      })
+  },
   components: {
     AppLogo
   },
@@ -52,7 +69,7 @@ export default {
         opacity: 0
       })
     }
-  }
+  }//transition
 }
 </script>
 

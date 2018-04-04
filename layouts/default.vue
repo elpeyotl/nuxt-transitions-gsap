@@ -22,6 +22,10 @@ html {
   margin: 0;
 }
 
+body {
+  color: dark-grey;
+}
+
 .button--green {
   display: inline-block;
   border-radius: 4px;

@@ -1,4 +1,8 @@
 module.exports = {
+  router: {
+    //base: '/demos/nuxt-trans-demo/dist/'
+   },
+  //mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -34,5 +38,29 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: [
+    ['nuxt-i18n', {
+      locales: [
+        { code: 'en' },
+        { code: 'fr' },
+        { code: 'es' }
+      ],
+      defaultLocale: 'en',
+      vueI18n: {
+        fallbackLocale: 'en',
+        messages: {
+          en: {
+            welcome: 'Welcome'
+          },
+          fr: {
+            welcome: 'Bienvenue'
+          },
+          es: {
+            welcome: 'Bienvenido'
+          }
+        }
+      }
+    }]
+  ]
 }
